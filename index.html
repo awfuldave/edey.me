@@ -1,12 +1,35 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>edey.me</title>
   <style type="text/css">
-    p.p1 {margin: 30.0px 30.0px 20.0px 30.0px; font: 150.0px Helvetica}
+    p.p1 {margin: 30.0px 30.0px 20.0px 30.0px; font: clamp(56px, 12vw, 150px) Helvetica}
     p.p2 {margin: 10.0px 30.0px 10.0px 30.0px; font: 20.0px Helvetica}
   </style>
 </head>
 <body>
 <p class="p1">welcome to edey.me</p>
-<p class="p2">take a look around, stay for a while</p>
+<p class="p2" id="sub">take a look around, stay for a while</p>
+<script>
+  // for the ones who looked *around* around
+  console.log("%coh, looking around around. respect.", "font: 16px Helvetica");
+
+  // stay for a while, get thanked (only counts time the tab is visible)
+  var sub = document.getElementById("sub"), stayed = 0;
+  setInterval(function () {
+    if (document.hidden) return;
+    stayed++;
+    if (stayed === 60) sub.textContent = "you stayed. thanks.";
+    if (stayed === 300) sub.textContent = "ok you can go now.";
+  }, 1000);
+
+  // you said you'd stay
+  var title = document.title;
+  document.addEventListener("visibilitychange", function () {
+    document.title = document.hidden ? "you said you'd stay…" : title;
+  });
+</script>
 </body>
 </html>

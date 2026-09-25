@@ -1,0 +1,3 @@
+# there's nothing to look around at. we checked.
+User-agent: *
+Allow: /
